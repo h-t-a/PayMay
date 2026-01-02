@@ -2,6 +2,7 @@
   "name": "paymay",
   "version": "0.1.0",
   "private": true,
+  "description": "PayMay is a real-time personal and shared finance tracker that lets friends transparently track debts, wishlists, and settlements across devices without manual reconciliation.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
