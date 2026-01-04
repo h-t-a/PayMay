@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useTransactions } from '@/src/hooks/useTransactions';
-import TransactionCard from '@/components/dashboard/TransactionCard';
-import AddTransactionForm from '@/components/forms/AddTransactionForm';
+import TransactionCard from '../../src/components/dashboard/TransactionCard';
+import AddTransactionForm from '../../src/components/dashboard/TransactionCard';
 
 export default function DashboardPage() {
   const [userId, setUserId] = useState<string>('');
