@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useProfiles } from '@/hooks/useProfiles';
+import { useProfiles } from '@/src/hooks/useProfiles';
 
 export default function AddTransactionForm({
   userId,

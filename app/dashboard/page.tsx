@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useTransactions } from '@/hooks/useTransactions';
+import { useTransactions } from '@/src/hooks/useTransactions';
 import TransactionCard from '@/components/dashboard/TransactionCard';
 import AddTransactionForm from '@/components/forms/AddTransactionForm';
 

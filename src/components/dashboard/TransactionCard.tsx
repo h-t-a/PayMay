@@ -1,4 +1,4 @@
-import { getTransactionView } from '@/utils/transactionLogic';
+import { getTransactionView } from '../../utils/transactionLogic';
 
 export default function TransactionCard({ tx, userId }: any) {
   const view = getTransactionView(tx, userId);
