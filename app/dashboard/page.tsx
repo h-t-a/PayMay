@@ -2,35 +2,36 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { useTransactions } from '@/hooks/useTransactions';
+import TransactionCard from '@/components/dashboard/TransactionCard';
+import AddTransactionForm from '@/components/forms/AddTransactionForm';
 
 export default function DashboardPage() {
-  const [profile, setProfile] = useState<any>(null);
+  const [userId, setUserId] = useState<string>('');
 
   useEffect(() => {
-    const loadProfile = async () => {
-      const { data: user } = await supabase.auth.getUser();
-      if (!user?.user) return;
-
-      const { data } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.user.id)
-        .single();
-
-      setProfile(data);
-    };
-
-    loadProfile();
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user) setUserId(data.user.id);
+    });
   }, []);
 
-  if (!profile) return <p className="p-4">Loading profile...</p>;
+  const { transactions, loading } = useTransactions(userId);
+
+  if (!userId) return null;
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold">Welcome, {profile.full_name}</h1>
-      <p className="text-sm text-gray-500">
-        KPay: {profile.phone_kpay || 'Not set'}
-      </p>
+    <div className="p-4 space-y-4">
+      <AddTransactionForm userId={userId} />
+
+      {loading && <p>Loading transactions...</p>}
+
+      {transactions.map(tx => (
+        <TransactionCard
+          key={tx.id}
+          tx={tx}
+          userId={userId}
+        />
+      ))}
     </div>
   );
 }
